@@ -1,0 +1,6 @@
+.grayImg {
+  width: 20rem;
+  filter: grayscale(100%);
+  margin: 1rem 0 0 5rem;
+  border-radius: 20rem;
+}
