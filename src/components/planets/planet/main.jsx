@@ -7,7 +7,7 @@ const Planet = (props) => {
     <li onClick={() => props.clickOnPlanet(props.name)}>
       <h4>{props.name}</h4>
       <DescriptionWithLink link={props.link} description={props.description} />
-      <GrayImg img_url={props.img_url} />
+      <GrayImg img_url={props.img_url} gray={true} />
     </li>
   )
 }
