@@ -1,6 +1,6 @@
 import DescriptionWithLink from "../../shared/DescriptionWithLink/main"
 import GrayImg from "../../shared/GrayImg/main"
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 async function getSatellites(planetId) {
   const response = await fetch(`http://localhost:3000/api/${planetId}.json`)

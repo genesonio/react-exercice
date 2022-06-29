@@ -1,5 +1,5 @@
 import Planet from "./planet/main"
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 
 async function getPlanets() {
