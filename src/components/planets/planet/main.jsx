@@ -1,5 +1,6 @@
 import DescriptionWithLink from "../../shared/DescriptionWithLink/main"
 import GrayImg from "../../shared/GrayImg/main"
+import Form from './form/main'
 import { useEffect, useState } from "react"
 
 async function getSatellites(planetId) {
@@ -15,7 +16,12 @@ const Planet = (planet) => {
     getSatellites(planet.id).then(data => {
       setSatellites(data['satellites'])
     })
+    
   }, [planet.id])
+
+  const addSatellites = (new_satellite) => {
+    setSatellites([...satellites, new_satellite])
+  }
 
   return (
     <>
@@ -23,6 +29,9 @@ const Planet = (planet) => {
       <DescriptionWithLink link={planet.link} description={planet.description} />
       <GrayImg img_url={planet.img_url} gray={planet.gray} />
       <h5>Satellites</h5>
+      <hr />
+      <Form addSatellites={addSatellites} />
+      <hr />
         <ul>
         {satellites.map((satellite, index) =>
           <li key={index}>
@@ -30,7 +39,7 @@ const Planet = (planet) => {
           </li>
         )}
         </ul>
-      <br />
+      <hr />
     </>
   )
 }
