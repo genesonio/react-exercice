@@ -1,30 +1,50 @@
 import Planet from "./planet/main"
+import React, { useEffect, useState } from "react"
 
-const clickOnPlanet = (name) => {
-  console.log(`${name}`)
+
+async function getPlanets() {
+  let response = await fetch('http://localhost:3000/api/planets.json')
+  let data = await response.json()
+  return data
 }
 
 const Planets = () => {
+  const [planets, setPlanets] = useState([])
+
+  useEffect(() => {
+    getPlanets().then(data => {
+      setPlanets(data['planets'])
+    })
+  }, [])
+
+  const removeLast = () => {
+    let new_planets = [...planets]
+    new_planets.pop()
+    setPlanets(new_planets)
+  }
+
+  const duplicateLast = () => {
+    let last_planet = planets[planets.length - 1]
+    setPlanets([...planets, last_planet])
+  }
+  
   return (
     <>
       <h3>Planet List</h3>
+      <button onClick={removeLast}>Remove Last</button>
+      <button onClick={duplicateLast}>Duplicate Last</button>
       <ul>
-          <Planet
-            name="Mercúrio"
-            description="Mercúrio é o menor e mais interno planeta do Sistema Solar, orbitando o Sol a cada 87,969 dias terrestres. A sua órbita tem a maior excentricidade e o seu eixo apresenta a menor inclinação em relação ao plano da órbita dentre todos os planetas do Sistema Solar."
-            link="https://pt.wikipedia.org/wiki/Merc%C3%BArio_(planeta)"
-            img_url="https://upload.wikimedia.org/wikipedia/commons/d/d9/Mercury_in_color_-_Prockter07-edit1.jpg"
-            gray={false}
-            clickOnPlanet={clickOnPlanet}
-          />
-          <Planet
-            name="Vênus"
-            description="Vénus (português europeu) ou Vênus (português brasileiro) é o segundo planeta do Sistema Solar em ordem de distância a partir do Sol, orbitando-o a cada 224,7 dias."
-            link="https://pt.wikipedia.org/wiki/V%C3%A9nus_(planeta)"
-            img_url="https://upload.wikimedia.org/wikipedia/commons/8/85/Venus_globe.jpg"
-            gray={true}
-            clickOnPlanet={clickOnPlanet}
-          />
+        {planets.map((planet, index) =>
+          <li key={index}>
+            <Planet
+              name={planet.name}
+              description={planet.description}
+              img_url={planet.img_url}
+              link={planet.link}
+              id={planet.id}
+            />
+          </li>
+        )}
       </ul>
     </>
   )
