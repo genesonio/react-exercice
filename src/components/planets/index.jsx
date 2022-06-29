@@ -1,5 +1,5 @@
-import Planet from "./planet/main"
-import Form from "./form/main"
+import Planet from "./planet"
+import Form from "./form"
 import { useEffect, useState } from "react"
 
 

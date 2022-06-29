@@ -1,6 +1,6 @@
 import DescriptionWithLink from "../../shared/DescriptionWithLink/main"
 import GrayImg from "../../shared/GrayImg/main"
-import Form from './form/main'
+import Form from '../../planet/form'
 import { useEffect, useState } from "react"
 
 async function getSatellites(planetId) {

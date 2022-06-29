@@ -1,4 +1,4 @@
-import Planets from "../components/planets/main"
+import Planets from "../components/planets"
 
 const PlanetsScreen = () => {
   return (
