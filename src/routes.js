@@ -4,7 +4,7 @@ import PlanetsScreen from './screens/planets'
 const ScreenRoutes = () => (
   <BrowserRouter>
     <Routes>
-      <Route exact path="/" component={PlanetsScreen} />
+      <Route exact path="/" element={<PlanetsScreen />} />
     </Routes>
   </BrowserRouter>
 )
